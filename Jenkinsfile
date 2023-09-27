@@ -10,19 +10,16 @@ pipeline {
             steps {  
                 echo 'initializing terraform' 
                 script {
-                      {
+
                         sh "terraform init"
-                    }
                 }
             }  
         }
         stage ('Provision eks- Terraform plan') {
             steps {  
                 echo 'terraform plan' 
-                script {
-                       {
+                script {  
                         sh "terraform plan"
-                    }
                 }
             }  
         }
@@ -30,9 +27,9 @@ pipeline {
             steps {  
                 echo 'applying terraform code' 
                 script {
-                     {
+                     
                         sh "terraform apply -auto-approve"
-                    }
+                    
                 }
             }  
         }
@@ -40,9 +37,9 @@ pipeline {
             steps {  
                 echo 'updating kubeconfig' 
                 script {
-                       {
+                       
                         sh "aws eks update-kubeconfig --name pet-clinic"
-                    }
+                    
                 }
             }  
         }
