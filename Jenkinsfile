@@ -38,7 +38,7 @@ pipeline {
                 echo 'updating kubeconfig' 
                 script {
                        
-                        sh "aws eks update-kubeconfig --name pet-clinic"
+                        sh "aws eks update-kubeconfig --region us-east-1 --name pet-clinic"
                     
                 }
             }  
