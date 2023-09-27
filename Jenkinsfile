@@ -23,12 +23,12 @@ pipeline {
                 }
             }  
         }
-        stage ('Provision eks- Terraform apply') {
+        stage ('Terraform Action') {
             steps {  
-                echo 'applying terraform code' 
+                echo 'Terraform action is -->${action}' 
                 script {
-                     
-                        sh "terraform apply -auto-approve"
+
+                        sh "terraform ${action} -auto-approve"
                     
                 }
             }  
