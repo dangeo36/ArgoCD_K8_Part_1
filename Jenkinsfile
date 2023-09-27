@@ -4,7 +4,9 @@ pipeline {
                 AWS_ACCESS_KEY_ID = credentials('aws-creds')
                 AWS_SECRET_ACCESS_KEY = credentials('aws-creds')
             }
-
+    parameters {
+        choice(name: 'action', choices: ['apply', 'destroy'], description: 'Terraform action')
+    }
     stages { 
         stage ('Terraform Init - provision EKS infrastructure') {
             steps {  
@@ -34,6 +36,9 @@ pipeline {
             }  
         }
         stage ('Update kube-config') {
+            when {
+                expression { params.action != 'destroy' }
+            }
             steps {  
                 echo 'updating kubeconfig' 
                 script {
